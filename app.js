@@ -21,8 +21,8 @@ const userSchema = new mongoose.Schema({
   email:String,
   password:String
 });
-const secret = "thisislittlesecret"
-userSchema.plugin(encrypt, {secret:secret, encryptedFields:["password"]})
+
+userSchema.plugin(encrypt, {secret:process.env.SECRET, encryptedFields:["password"]})
 
 const User = mongoose.model("User", userSchema);
 app.get("/", function(req, res){
